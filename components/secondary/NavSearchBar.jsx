@@ -15,7 +15,8 @@ export default function NavSearchBar(props) {
     }
   };
 
-  const handleClear = () => {
+  const handleClear = event => {
+    event.preventDefault();
     onChange('');
     onSubmit('');
   };

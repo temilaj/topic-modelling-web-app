@@ -1,3 +1,10 @@
-export default function Home() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+import React, { useContext } from 'react';
+
+import Home from '../components/containers/Home';
+import Landing from '../components/containers/Landing';
+import AppContext from '../data/context/AppContext';
+
+export default function Index() {
+  const { isSignedIn, user } = useContext(AppContext);
+  return <>{isSignedIn ? <Home /> : <Landing />}</>;
 }

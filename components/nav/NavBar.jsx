@@ -13,11 +13,13 @@ export default function NavBar() {
     setQuery(value);
   };
 
-  const handleSubmit = () => {
-    router.push({
-      pathname: `/`,
-      query: { query },
-    });
+  const handleSubmit = value => {
+    if (value.length > 0) {
+      router.push({
+        pathname: '/',
+        query: { query: value },
+      });
+    } else [router.push('')];
   };
 
   return (
