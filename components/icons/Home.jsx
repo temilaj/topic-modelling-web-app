@@ -3,7 +3,7 @@ import React from 'react';
 export default function Home(props) {
   const { isActive = false } = props;
   return (
-    <svg width={46} height={50} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg width={46} height={50} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

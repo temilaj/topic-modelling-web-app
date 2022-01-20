@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function LogOut(props) {
-  const { isActive = false } = props;
   return (
     <svg width={43} height={40} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path

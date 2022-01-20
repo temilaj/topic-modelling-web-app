@@ -5,7 +5,6 @@ import Router from 'next/router';
 import NavBar from './NavBar';
 
 function Header(props) {
-  const { fixed } = props;
   Router.onRouteChangeStart = () => {
     NProgress.start();
   };
@@ -19,7 +18,7 @@ function Header(props) {
   };
 
   return (
-    <header {...(fixed ? { className: 'w-full fixed justify-end bg-white shadow z-20' } : {})}>
+    <header className="w-full">
       <NavBar />
     </header>
   );
