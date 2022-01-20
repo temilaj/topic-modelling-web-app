@@ -15,7 +15,7 @@ export default function NavBar() {
 
   const handleSubmit = () => {
     router.push({
-      pathname: `/search`,
+      pathname: `/`,
       query: { query },
     });
   };
