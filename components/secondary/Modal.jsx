@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline';
 
 export default function Modal(props) {
   const cancelButtonRef = useRef(null);
-  const { onClose, isOpen, title, showLogo = true, width } = props;
+  const { onClose, isOpen, title, width } = props;
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
@@ -41,6 +41,13 @@ export default function Modal(props) {
             <div
               className={`inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full ${width}`}>
               <div className="bg-white px-4 pb-4 pt-8 sm:px-6 flex justify-end">
+                {title && (
+                  <Dialog.Title
+                    as="h3"
+                    className="w-full text-center text-xl leading-6 font-medium text-black-bg dark:text-white font-roobert -mr-4">
+                    {title}
+                  </Dialog.Title>
+                )}
                 <button
                   type="button"
                   className="justify-center rounded-xl shadow-sm px-1 py-1 text-gray-700 focus:outline-none focus:border-gray-300 focus:border border-4 border-accent-600"

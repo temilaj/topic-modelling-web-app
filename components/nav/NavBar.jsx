@@ -21,7 +21,7 @@ export default function NavBar() {
   };
 
   return (
-    <div className="flex justify-between py-6 px-8">
+    <div className="flex justify-between py-6 px-16">
       <div className="w-8/12">
         <SearchBar placeHolder="Search" query={query} onChange={handleChange} onSubmit={handleSubmit} />
       </div>
