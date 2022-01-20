@@ -1,6 +1,5 @@
 import { Fragment, useContext, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { useRouter } from 'next/router';
 
 import AppContext from '../../data/context/AppContext';
 import Modal from '../secondary/Modal';
@@ -12,10 +11,9 @@ function classNames(...classes) {
 }
 
 export default function NavMenu() {
-  const { isSignedIn, isModalOpen, setModalState } = useContext(AppContext);
+  const { isSignedIn, isModalOpen, setModalState, user } = useContext(AppContext);
   const [authForm, setAuthForm] = useState('LOG_IN');
   const [modalTitle, setModalTitle] = useState('Log in to Spark! Topic Modeling');
-  const router = useRouter();
 
   const openModal = () => {
     setModalState(true);
@@ -34,12 +32,6 @@ export default function NavMenu() {
       case 'SIGN_UP':
         setModalTitle('Create an account');
         break;
-      case 'FORGOT_PASSWORD':
-        setModalTitle('Recover password');
-        break;
-      case 'RESET_PASSWORD':
-        setModalTitle('Reset password');
-        break;
       default:
         break;
     }
@@ -57,6 +49,8 @@ export default function NavMenu() {
             onSignUpClick={() => handleClick('SIGN_UP')}
           />
         );
+      case 'SIGN_UP':
+        return <SignUpForm onLoginClick={() => handleClick('LOG_IN')} />;
       default:
         return <SignUpForm onLoginClick={() => handleClick('LOG_IN')} />;
     }
@@ -65,7 +59,7 @@ export default function NavMenu() {
   return (
     <>
       <div className="flex">
-        <h4 className="self-center text-lg mr-6">Profile</h4>
+        <h4 className="self-center text-lg mr-6">{isSignedIn ? user.firstName : 'Profile'}</h4>
         <Disclosure as="nav" className="">
           {({ open }) => (
             <Menu as="div" className="relative">
@@ -95,28 +89,16 @@ export default function NavMenu() {
                       )}
                     </Menu.Item>
                   ) : (
-                    <>
-                      <Menu.Item>
-                        {() => (
-                          <button
-                            type="button"
-                            onClick={() => handleClick('LOG_IN')}
-                            className="w-full bg-white whitespace-nowrap text-left font-medium text-blue-700 hover:bg-blue-600 px-4 py-3 rounded hover:text-white my-0.5">
-                            Log in
-                          </button>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {() => (
-                          <button
-                            type="button"
-                            onClick={() => handleClick('SIGN_UP')}
-                            className="w-full bg-blue-700 whitespace-nowrap text-left font-medium text-white hover:bg-white px-4 py-3 rounded hover:text-blue-700 my-0.5">
-                            Sign up
-                          </button>
-                        )}
-                      </Menu.Item>
-                    </>
+                    <Menu.Item>
+                      {() => (
+                        <button
+                          type="button"
+                          onClick={() => handleClick('SIGN_UP')}
+                          className="w-full bg-blue-700 whitespace-nowrap text-left font-medium text-white hover:bg-blue-400 px-4 py-3 rounded my-0.5">
+                          Sign up
+                        </button>
+                      )}
+                    </Menu.Item>
                   )}
                 </Menu.Items>
               </Transition>
@@ -124,10 +106,8 @@ export default function NavMenu() {
           )}
         </Disclosure>
       </div>
-      <Modal onClose={closeModal} isOpen={isModalOpen} title={modalTitle} showLogo={!!modalTitle}>
+      <Modal onClose={closeModal} isOpen={isModalOpen} title={modalTitle}>
         {renderAuthForm()}
-        {/* {ModalChild()} */}
-        {/* <ModalChild /> */}
       </Modal>
     </>
   );

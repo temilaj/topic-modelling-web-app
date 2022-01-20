@@ -17,7 +17,6 @@ export default {
     localStorage.setItem('authUser', JSON.stringify(user));
   },
   getToken() {
-    // const token = localStorage.getItem('authToken');
     if (authToken) {
       return JSON.parse(authToken);
     }
@@ -27,7 +26,6 @@ export default {
     if (newAuthToken) {
       API.defaults.headers.common['authorization'] = `Bearer ${newAuthToken}`;
       authToken = newAuthToken;
-      // localStorage.setItem('authToken', JSON.stringify(authToken));
     }
   },
   restoreToken() {
@@ -41,7 +39,6 @@ export default {
   deleteToken() {
     delete API.defaults.headers.common['authorization'];
     authToken = null;
-    // localStorage.removeItem('authToken');
   },
   logIn(credentials) {
     return API.post('/v1/auth/login', credentials)
@@ -53,22 +50,7 @@ export default {
       });
   },
   signUp(credentials) {
-    console.log({ credentials });
     return API.post('/v1/auth/signup', credentials)
-      .then(response => {
-        return response.data;
-      })
-      .catch(errorHandler.handleAPIError);
-  },
-  requestPasswordReset(email) {
-    return API.post('/v1/account/forgot', { email })
-      .then(response => {
-        return response.data;
-      })
-      .catch(errorHandler.handleAPIError);
-  },
-  resetPassword(credentials, resetToken) {
-    return API.post(`/v1/account/reset/${resetToken}`, credentials)
       .then(response => {
         return response.data;
       })
