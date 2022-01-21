@@ -29,8 +29,8 @@ export default function SideNav() {
       <div className="overflow-y-auto overflow-x-hidden flex-grow">
         <ul className="space-y-6">
           <li>
-            <SideNavItem title="Home" link="/" isActive={router.asPath === '/'}>
-              <HomeIcon isActive={router.asPath === '/'} />
+            <SideNavItem title="Home" link="/" isActive={router.pathname === '/'}>
+              <HomeIcon isActive={router.pathname === '/'} />
             </SideNavItem>
           </li>
           {isSignedIn && (
@@ -49,13 +49,15 @@ export default function SideNav() {
           )}
         </ul>
       </div>
-      <div className="text-center pb-8 pt-4">
-        <button onClick={handleLogout} className="h-full" type="button">
-          <div className="">
-            <LogOutIcon />
-          </div>
-        </button>
-      </div>
+      {isSignedIn && (
+        <div className="text-center pb-8 pt-4">
+          <button onClick={handleLogout} className="h-full" type="button">
+            <div className="">
+              <LogOutIcon />
+            </div>
+          </button>
+        </div>
+      )}
     </div>
   );
 }

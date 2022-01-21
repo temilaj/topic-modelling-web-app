@@ -32,7 +32,6 @@ export default function SingUpForm(props) {
     try {
       const response = await authenticationservice.signUp(userInput);
       const { user, authToken } = response.data;
-      console.log({ user, authToken });
       authenticationservice.setToken(authToken);
       signIn(authToken);
       updateUser(user);
@@ -106,11 +105,9 @@ export default function SingUpForm(props) {
           classNames={`bg-blue-600 text-white hover:bg-blue-500 ${error?.message ? 'ring ring-red-600' : ''}`}
         />
       </form>
-      <p className="text-gray-600 dark:text-hint-nav mt-6 text-center">
-        I don't have an account.
-        <button
-          className="focus:outline-none ml-2 font-medium text-primary-600 dark:text-white"
-          onClick={handleSignupClick}>
+      <p className="text-gray-600 mt-6 text-center">
+        I have an account.
+        <button className="focus:outline-none ml-2 font-medium text-primary-600" onClick={handleSignupClick}>
           Log in
         </button>
       </p>

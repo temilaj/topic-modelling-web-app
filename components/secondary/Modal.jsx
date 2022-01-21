@@ -44,7 +44,7 @@ export default function Modal(props) {
                 {title && (
                   <Dialog.Title
                     as="h3"
-                    className="w-full text-center text-xl leading-6 font-medium text-black-bg dark:text-white font-roobert -mr-4">
+                    className="w-full text-center text-xl leading-6 font-medium text-black-bg font-roobert -mr-4">
                     {title}
                   </Dialog.Title>
                 )}

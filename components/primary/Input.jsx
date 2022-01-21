@@ -40,7 +40,7 @@ class Input extends Component {
       <React.Fragment>
         {type === 'password' ? (
           <div className={`mb-2 ${marginTop ?? ''}`}>
-            <label className="text-gray-800 dark:text-white text-sm font-medium block mt-2" htmlFor={name}>
+            <label className="text-gray-800 text-sm font-medium block mt-2" htmlFor={name}>
               {label}
             </label>
             <div className="flex relative  mt-2 ">
@@ -51,7 +51,7 @@ class Input extends Component {
                 onChange={this.handleChange}
                 type={passwordVisible ? 'text' : 'password'}
                 {...(autoComplete ? { autoComplete } : {})}
-                className={`bg-gray-200 focus:bg-gray-200 dark:bg-black-input dark:focus:bg-black-bg py-3 px-2 text-gray-800 dark:text-white text-base rounded w-full border-gray-300 dark:border-gray-500 ${
+                className={`bg-gray-200 focus:bg-gray-200 py-3 px-2 text-gray-800 text-base rounded w-full border-gray-300 ${
                   error ? 'border-red-600' : ''
                 }`}
                 {...rest}
@@ -64,7 +64,7 @@ class Input extends Component {
           </div>
         ) : (
           <div className={`flex flex-col flex-1 ${marginTop ?? ''}`}>
-            <label className="text-gray-800 dark:text-white text-sm font-medium block mt-2" htmlFor={name}>
+            <label className="text-gray-800 text-sm font-medium block mt-2" htmlFor={name}>
               {label}
             </label>
             <input
@@ -76,7 +76,7 @@ class Input extends Component {
               onChange={this.handleChange}
               {...(autoComplete ? { autoComplete } : {})}
               {...(defaultValue ? { defaultValue } : {})}
-              className={`bg-gray-200 focus:bg-gray-200 dark:bg-black-input dark:focus:bg-black-bg py-3 px-2 text-gray-800 dark:text-white text-base mt-2 rounded w-full placeholder-black-nav dark:placeholder-hint-nav border-gray-300 dark:border-gray-500 ${
+              className={`bg-gray-200 focus:bg-gray-200 py-3 px-2 text-gray-800 text-base mt-2 rounded w-full placeholder-black-nav border-gray-300 ${
                 error ? 'border-red-600' : ''
               }`}
               {...rest}
