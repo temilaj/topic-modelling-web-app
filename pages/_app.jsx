@@ -1,5 +1,6 @@
 import App from 'next/app';
 import jwt from 'jsonwebtoken';
+import 'react-toastify/dist/ReactToastify.css';
 
 import PageWrapper from '../components/layout/PageWrapper';
 import '../styles/globals.css';

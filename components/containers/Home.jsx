@@ -25,10 +25,10 @@ export default function Home() {
     getArticles(query.query);
   }, [query.query]);
 
-  const handleDeleteArticle = id => {
+  const handleDeleteArticle = async id => {
     try {
       setApiLoading(true);
-      // await articleService.deleteArticle(id).data;
+      await articleService.deleteArticle(id).data;
       const updatedArticles = articles.filter(article => article._id !== id);
       setApiLoading(false);
       setArticles(updatedArticles);
@@ -38,27 +38,25 @@ export default function Home() {
   };
 
   return (
-    <div className="">
-      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-16 pt-8 pb-32 py-8">
-        <h3 className="text-2xl text-hint-nav">Your Articles</h3>
-        <div className="grid grid-cols-1 md:gap-16 lg:gap-32 md:grid-cols-2 lg:grid-cols-4 mt-8">
-          {query?.query?.length > 0 && articles?.length > 0 ? '' : <UploadArticleCard />}
-          {articles.length > 0 && (
-            <>
-              {articles.map((article, index) => (
-                <ArticleCard
-                  key={article._id}
-                  id={article._id}
-                  title={article.title}
-                  createdAt={article.createdAt}
-                  content={article.content}
-                  link={`/articles/${article.slug}`}
-                  onDeleteArticle={handleDeleteArticle}
-                />
-              ))}
-            </>
-          )}
-        </div>
+    <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-16 pt-8 pb-32 py-8">
+      <h3 className="text-2xl text-hint-nav">Your Articles</h3>
+      <div className="grid grid-cols-1 md:gap-12 lg:gap-4 xl:gap-16 md:grid-cols-2 lg:grid-cols-4 mt-8">
+        {query?.query?.length > 0 && articles?.length > 0 ? '' : <UploadArticleCard />}
+        {articles.length > 0 && (
+          <>
+            {articles.map((article, index) => (
+              <ArticleCard
+                key={article._id}
+                id={article._id}
+                title={article.title}
+                createdAt={article.createdAt}
+                content={article.content}
+                link={`/compare/${article.slug}`}
+                onDeleteArticle={handleDeleteArticle}
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

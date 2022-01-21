@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import AppContext from '../../data/context/AppContext';
 import API from '../../services/api';
@@ -71,6 +72,7 @@ export default function PageWrapper(props) {
 
   return (
     <>
+      <ToastContainer />
       <Metatags />
       <Layout>{props.children}</Layout>
     </>
